@@ -33,6 +33,47 @@ const ManageVehicals = () => {
         document.body.classList.add('modal-open');
     };
 
+
+    const handleDelete = (vehical) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Do you want to delete this vehicle?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+        }).then(async (result) => {
+
+
+            console.log(vehical);
+            
+            if (result.isConfirmed) {
+                try {
+                    const response = await axios.put('http://localhost:3000/transportation/deleteVehical',vehical);
+                    if (response.status === 200) {
+                        await Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Vehicle deleted successfully',
+                            confirmButtonColor: '#3085d6'
+                        });
+                        setRefresh(!refresh);
+                    }
+                } catch (error) {
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Delete Failed',
+                        text: 'Failed to delete vehicle',
+                        confirmButtonColor: '#d33'
+                    });
+                    console.log("Error", error);
+                }
+            }
+        });
+    };
+
+
     const handleImageUpload = (e) => {
         const files = Array.from(e.target.files);
         const newImageUrls = files.map(file => URL.createObjectURL(file));
@@ -267,10 +308,17 @@ const ManageVehicals = () => {
                                                 </div>
                                             </div>
                                             <button
-                                                className="btn btn-primary w-100"
+                                                className="btn btn-primary my-2 w-100"
                                                 onClick={() => handleEdit(vehical)}
                                             >
                                                 Edit Vehicle
+                                            </button>
+
+                                            <button
+                                                className="btn btn-danger w-100"
+                                                onClick={() => handleDelete(vehical)}
+                                            >
+                                                Delete Vehicle
                                             </button>
                                         </div>
                                     </div>

@@ -282,4 +282,54 @@ const editVehical = async(req,res) => {
     
 };
 
-export { AddTransportationService, getAllTransportationServices, UpdateTransportationService, deleteTransportationService, viewTransportationService, addVehical , deleteVehicalImage , editVehical};
+
+
+
+const deleteVehical = async(req,res) => {
+
+
+    try {
+        const data = req.body;
+
+        const tid = data.tid;
+
+        const vid = data.id;
+
+        console.log("Received data:", req.body);
+
+        console.log("Transportation Service ID:", tid);
+        console.log("Vehical ID:", vid);
+
+
+        
+
+        const updated = await TransportationServiceModel.findOneAndUpdate(
+            {
+                id: tid
+            },
+            {
+                $pull: {
+                    availableVehicles: {
+                        id: vid
+                    }
+                }
+            },
+            {new: true}
+        );
+
+
+        
+        if (!updated) {
+            console.log("No document found or no update made");
+            return res.status(404).json({message: "Vehical or Transportation Service not found"});
+        }
+
+        res.status(200).json(updated);
+        
+    } catch(e) {
+        console.log("Error occurred:", e);
+        res.status(500).json({error: e.message});
+    }
+}
+
+export { AddTransportationService, getAllTransportationServices, UpdateTransportationService, deleteTransportationService, viewTransportationService, addVehical , deleteVehicalImage , editVehical , deleteVehical};
