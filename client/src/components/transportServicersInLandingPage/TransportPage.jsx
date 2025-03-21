@@ -13,6 +13,7 @@ import axios from 'axios';
 const { RangePicker } = DatePicker;
 
 const TransportPage = () => {
+
     const { allTransportServices, loading } = useContext(ClientContext);
     const [availabilityChecked, setAvailabilityChecked] = useState(false);
     const { transportationID } = useParams();
@@ -37,7 +38,7 @@ const TransportPage = () => {
 
     // Handle booking a vehicle
     const handleBooking = (vehical) => {
-        setIsCheckingAvailability(true);
+
 
         console.log(
             vehical
@@ -67,6 +68,8 @@ const TransportPage = () => {
               }
               axios.post('http://localhost:3000/transportation/addBooking',newBooking).then((res)=>{
                 Swal.fire('Booked!', 'Your vehicle has been booked successfully.', 'success');
+                window.location.href = '/';
+
               }).catch((err)=>{
                 Swal.fire('Failed!', 'Something went wrong', 'error');
                 console.log(err);
