@@ -1,0 +1,96 @@
+/* Vehicle Card Hover Effects */
+.vehicle-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Feature Icons */
+.feature-icon {
+    transition: transform 0.3s ease;
+}
+
+.card:hover .feature-icon {
+    transform: scale(1.1);
+}
+
+/* Availability Message Animation */
+.text-success, .text-danger {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Carousel Controls Enhancement */
+.carousel-control-prev, .carousel-control-next {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.carousel:hover .carousel-control-prev,
+.carousel:hover .carousel-control-next {
+    opacity: 0.8;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .display-5 {
+        font-size: 2rem;
+    }
+    
+    .lead {
+        font-size: 1rem;
+    }
+}
+
+/* Accessibility Focus Styles */
+button:focus, a:focus {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+/* Loading Spinner */
+.ant-spin {
+    margin: 20px auto;
+}
+
+/* Date Picker Custom Styling */
+.ant-picker {
+    border-radius: 0.375rem;
+}
+
+.ant-picker:hover {
+    border-color: #0d6efd;
+}
+
+/* Badge Styling */
+.badge {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+
+.availability-check-container {
+    border-left: 4px solid #0d6efd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.availability-check-container:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 767.98px) {
+    .availability-check-container {
+        margin-top: 2rem;
+        border-left: none;
+        border-top: 4px solid #0d6efd;
+    }
+}
+

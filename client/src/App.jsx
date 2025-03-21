@@ -46,6 +46,7 @@ import CancledGuidBookings from './pages/GuidBooking/GuidbookingHistory/CancledG
 import CompletedGuidBookings from './pages/GuidBooking/GuidbookingHistory/CompletedGuidBookings'
 import AllGuides from './pages/GuidBooking/AllGuides'
 import ConGuidPage from './pages/GuidBooking/GuidPage/ConGuideBook'
+import TransportPage from './components/transportServicersInLandingPage/TransportPage'
 
 
 function App() {
@@ -121,6 +122,7 @@ function App() {
           <Route path="/allguides" element={<AllGuides />} />
 
           <Route path="/conguidebook" element={<ConGuidPage />} />
+          <Route path="/transportation/:transportationID" element={<TransportPage/>} />
 
 
 

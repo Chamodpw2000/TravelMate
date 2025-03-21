@@ -1,6 +1,7 @@
 import dotenv from "dotenv"
 dotenv.config({ path: "../.env" })
 import { TransportationServiceModel } from "../models/Transportation.js"
+import VehicalBookings from "../models/VehicalBookings.js";
 
 const AddTransportationService = async (req, res) => {
 
@@ -332,4 +333,67 @@ const deleteVehical = async(req,res) => {
     }
 }
 
-export { AddTransportationService, getAllTransportationServices, UpdateTransportationService, deleteTransportationService, viewTransportationService, addVehical , deleteVehicalImage , editVehical , deleteVehical};
+
+
+
+
+
+
+const  AddBooking= async(req, res)=> {
+
+
+
+
+
+    const data = req.body;
+
+    console.log(data);
+
+    
+
+    try {
+        const newBooking = new VehicalBookings({
+            user: data.user,
+            vehical: data.vehicle,
+            fromDate: data.fromDate,
+            toDate: data.toDate,
+            totaldays: data.totaldays,
+            totalprice: data.totalprice 
+        });
+
+        const savedBooking = await newBooking.save();
+
+        await TransportationServiceModel.findOneAndUpdate(
+            { id: data.vehicle.tid },
+            {
+                $push: {
+                    [`availableVehicles.${data.vehicle.id}.bookings`]: {
+                       
+                            id: savedBooking._id.toString(),
+                            fromDate: data.fromDate,
+                            toDate: data.toDate,
+                            totaldays: data.totaldays,
+                            totalprice: data.totalprice
+                       
+                    }
+                }
+            },
+            { new: true }
+        );
+
+        res.status(200).json({
+            message: "Booking Saved Successfully",
+        });
+
+
+
+
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({
+            message: "Booking Failed",
+        });
+    }
+
+}
+export { AddTransportationService, getAllTransportationServices, UpdateTransportationService, deleteTransportationService, viewTransportationService, addVehical , deleteVehicalImage , editVehical , deleteVehical,AddBooking};
