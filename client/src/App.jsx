@@ -48,6 +48,11 @@ import AllGuides from './pages/GuidBooking/AllGuides'
 import ConGuidPage from './pages/GuidBooking/GuidPage/ConGuideBook'
 import TransportPage from './components/transportServicersInLandingPage/TransportPage'
 
+import AvailableVehicleBookings from './pages/vehicalBooking/AvailableVehicleBookings'
+import CompletedVehicleBookings from './pages/vehicalBooking/CompletedVehicleBookings'
+import VehicleBookings from './pages/vehicalBooking/MyVehicleBookings'
+import CancledVehicleBookings from './pages/vehicalBooking/CancledVehicleBookings'
+
 
 function App() {
   return (
@@ -123,6 +128,13 @@ function App() {
 
           <Route path="/conguidebook" element={<ConGuidPage />} />
           <Route path="/transportation/:transportationID" element={<TransportPage/>} />
+
+
+          <Route path="/myVehicleBooking" element={<VehicleBookings/>}>
+            <Route path="available" element={<AvailableVehicleBookings />} />
+            <Route path="cancelled" element={<CancledVehicleBookings />} />
+            <Route path="completed" element={<CompletedVehicleBookings />} />
+          </Route>
 
 
 

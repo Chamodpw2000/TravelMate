@@ -396,4 +396,117 @@ const  AddBooking= async(req, res)=> {
     }
 
 }
+
+
+export function getVehicleBookings(req, res) {
+
+    const userEmail = req.query.email;
+    // console.log(userEmail);
+
+
+    console.log(userEmail);
+    
+
+
+
+
+
+
+    VehicalBookings.find(
+        {
+            "user.email": userEmail,
+            status: "Booked"
+        }
+    ).then((data) => {
+
+        res.status(200).json(data)
+
+
+
+
+
+    }).catch((err) => {
+
+
+
+        console.log(err);
+    })
+}
+
+
+
+export function getCancledVehicleBookings(req, res) {
+
+    const userEmail = req.query.email;
+    console.log(userEmail);
+
+
+    console.log("========================");
+    
+
+
+
+
+
+
+   VehicalBookings.find(
+        {
+            "user.email": userEmail,
+            status: "Cancelled"
+        }
+    ).then((data) => {
+        console.log(data);
+        
+
+        res.status(200).json(data)
+
+
+
+
+
+    }).catch((err) => {
+
+
+
+        console.log(err);
+    })
+}
+
+
+export function getComVehicleBookings(req, res) {
+
+    const userEmail = req.query.email;
+    console.log(userEmail);
+
+
+    console.log("========================");
+    
+
+
+
+
+
+
+    VehicalBookings.find(
+        {
+            "user.email": userEmail,
+            status: "Completed"
+        }
+    ).then((data) => {
+        console.log(data);
+        
+
+        res.status(200).json(data)
+
+
+
+
+
+    }).catch((err) => {
+
+
+
+        console.log(err);
+    })
+}
 export { AddTransportationService, getAllTransportationServices, UpdateTransportationService, deleteTransportationService, viewTransportationService, addVehical , deleteVehicalImage , editVehical , deleteVehical,AddBooking};
