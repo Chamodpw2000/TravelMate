@@ -1,5 +1,5 @@
 import express from 'express';
-import { AddBooking, addVehical, deleteVehical, deleteVehicalImage, editVehical, getAllTransportationServices, getCancledVehicleBookings, getComVehicleBookings, getVehicleBookings } from '../controller/TransportationServiceController.js';
+import { AddBooking, addVehical, cancleVehicleBooking, deleteVehical, deleteVehicalImage, editVehical, getAllTransportationServices, getCancledVehicleBookings, getComVehicleBookings, getVehicleBookings } from '../controller/TransportationServiceController.js';
 const transportationrouter = express.Router();
 
 transportationrouter.post("/addVehical",addVehical)
@@ -19,6 +19,8 @@ transportationrouter.get("/getBooking",getVehicleBookings)
 transportationrouter.get("/getcancelBooking",getCancledVehicleBookings)
 
 transportationrouter.get("/getCompletedBooking",getComVehicleBookings)
+
+transportationrouter.put("/canclebooking",cancleVehicleBooking)
 
 
 export default transportationrouter;

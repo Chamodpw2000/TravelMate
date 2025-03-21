@@ -134,7 +134,7 @@ const viewTransportationService = async (req, res) => {
 
 const addVehical = async (req, res) => {
     console.log("============================");
-    
+
     console.log(req.body);
 
 
@@ -158,22 +158,22 @@ const addVehical = async (req, res) => {
 
         const ts = await TransportationServiceModel.findOneAndUpdate({ id: data.tid }, { $push: { availableVehicles: data } }, { new: true });
         res.status(200).json({ success: true, message: 'Vehical added successfully', data: ts });
-} catch (e) { console.log(e) }
+    } catch (e) { console.log(e) }
 }
 
 
 
 
-const deleteVehicalImage = async(req,res) => {
+const deleteVehicalImage = async (req, res) => {
     try {
 
-        
+
         const { images } = req.body;
         console.log("Received data:", req.body);
         console.log("Hotel ID:", images.ts);
         console.log("Room ID:", images.vehical);
         console.log("Images to remove:", images.imagesToRemove);
-        
+
         const updated = await TransportationServiceModel.findOneAndUpdate(
             {
                 _id: images.ts,
@@ -186,21 +186,21 @@ const deleteVehicalImage = async(req,res) => {
                     }
                 }
             },
-            {new: true}
+            { new: true }
         );
 
         // console.log("Updated document:", updated);
-        
+
         if (!updated) {
             console.log("No document found or no update made");
-            return res.status(404).json({message: "Vehical or Transportation Service not found"});
+            return res.status(404).json({ message: "Vehical or Transportation Service not found" });
         }
 
         res.status(200).json(updated);
-        
-    } catch(e) {
+
+    } catch (e) {
         console.log("Error occurred:", e);
-        res.status(500).json({error: e.message});
+        res.status(500).json({ error: e.message });
     }
 }
 
@@ -208,85 +208,85 @@ const deleteVehicalImage = async(req,res) => {
 
 
 
-const editVehical = async(req,res) => {
+const editVehical = async (req, res) => {
 
     try {
 
 
         // console.log(req.body);
-        const  data  = req.body;
-        
+        const data = req.body;
 
-     console.log("data are",data);
-     console.log(data.brand);
-     
 
-     console.log("============================================",data.tid);
-     
+        console.log("data are", data);
+        console.log(data.brand);
 
-     
-     
-        
-        
-    
-    
-        const updated = await TransportationServiceModel.findOneAndUpdate(  {
+
+        console.log("============================================", data.tid);
+
+
+
+
+
+
+
+
+        const updated = await TransportationServiceModel.findOneAndUpdate({
             id: data.tid,
             "availableVehicles.id": data.id
         },
-        {
-            $set: {
-                "availableVehicles.$.brand": data.brand,
-                "availableVehicles.$.model": data.model,
-                
-                "availableVehicles.$.year": data.year,
-                "availableVehicles.$.seates": data.seates,
+            {
+                $set: {
+                    "availableVehicles.$.brand": data.brand,
+                    "availableVehicles.$.model": data.model,
 
-                "availableVehicles.$.description": data.description,
-                "availableVehicles.$.price": data.price,
-                "availableVehicles.$.capacity": data.capacity,
-                "availableVehicles.$.images": data.images  
+                    "availableVehicles.$.year": data.year,
+                    "availableVehicles.$.seates": data.seates,
 
-            }
+                    "availableVehicles.$.description": data.description,
+                    "availableVehicles.$.price": data.price,
+                    "availableVehicles.$.capacity": data.capacity,
+                    "availableVehicles.$.images": data.images
+
+                }
 
 
 
-            
-           
-        },{new: true});
 
-        if(!updated) {
+
+            }, { new: true });
+
+        if (!updated) {
             console.log("No document found or no update made");
-            return res.status(404).json({message: "Vehical or Transportation Service not found"});
+            return res.status(404).json({ message: "Vehical or Transportation Service not found" });
         }
 
 
 
         console.log("Updated document:", updated);
-        
+
 
         res.status(200).json(updated);
-        
-        
+
+
     } catch (error) {
 
         console.log(
-            "Error in editing vehicle",error
+            "Error in editing vehicle", error
         );
 
         res.status(500).json({ success: false, error: "Server Error" });
-        
-        
+
+
     }
 
-   
-    
+
+
 };
 
 
 
 
-const deleteVehical = async(req,res) => {
+const deleteVehical = async (req, res) => {
 
 
     try {
@@ -302,7 +302,7 @@ const deleteVehical = async(req,res) => {
         console.log("Vehical ID:", vid);
 
 
-        
+
 
         const updated = await TransportationServiceModel.findOneAndUpdate(
             {
@@ -315,21 +315,21 @@ const deleteVehical = async(req,res) => {
                     }
                 }
             },
-            {new: true}
+            { new: true }
         );
 
 
-        
+
         if (!updated) {
             console.log("No document found or no update made");
-            return res.status(404).json({message: "Vehical or Transportation Service not found"});
+            return res.status(404).json({ message: "Vehical or Transportation Service not found" });
         }
 
         res.status(200).json(updated);
-        
-    } catch(e) {
+
+    } catch (e) {
         console.log("Error occurred:", e);
-        res.status(500).json({error: e.message});
+        res.status(500).json({ error: e.message });
     }
 }
 
@@ -339,7 +339,7 @@ const deleteVehical = async(req,res) => {
 
 
 
-const  AddBooking= async(req, res)=> {
+const AddBooking = async (req, res) => {
 
 
 
@@ -349,7 +349,7 @@ const  AddBooking= async(req, res)=> {
 
     console.log(data);
 
-    
+
 
     try {
         const newBooking = new VehicalBookings({
@@ -358,7 +358,7 @@ const  AddBooking= async(req, res)=> {
             fromDate: data.fromDate,
             toDate: data.toDate,
             totaldays: data.totaldays,
-            totalprice: data.totalprice 
+            totalprice: data.totalprice
         });
 
         const savedBooking = await newBooking.save();
@@ -368,13 +368,13 @@ const  AddBooking= async(req, res)=> {
             {
                 $push: {
                     [`availableVehicles.${data.vehicle.id}.bookings`]: {
-                       
-                            id: savedBooking._id.toString(),
-                            fromDate: data.fromDate,
-                            toDate: data.toDate,
-                            totaldays: data.totaldays,
-                            totalprice: data.totalprice
-                       
+
+                        id: savedBooking._id.toString(),
+                        fromDate: data.fromDate,
+                        toDate: data.toDate,
+                        totaldays: data.totaldays,
+                        totalprice: data.totalprice
+
                     }
                 }
             },
@@ -405,7 +405,7 @@ export function getVehicleBookings(req, res) {
 
 
     console.log(userEmail);
-    
+
 
 
 
@@ -442,21 +442,21 @@ export function getCancledVehicleBookings(req, res) {
 
 
     console.log("========================");
-    
 
 
 
 
 
 
-   VehicalBookings.find(
+
+    VehicalBookings.find(
         {
             "user.email": userEmail,
             status: "Cancelled"
         }
     ).then((data) => {
         console.log(data);
-        
+
 
         res.status(200).json(data)
 
@@ -480,7 +480,7 @@ export function getComVehicleBookings(req, res) {
 
 
     console.log("========================");
-    
+
 
 
 
@@ -494,7 +494,7 @@ export function getComVehicleBookings(req, res) {
         }
     ).then((data) => {
         console.log(data);
-        
+
 
         res.status(200).json(data)
 
@@ -509,4 +509,180 @@ export function getComVehicleBookings(req, res) {
         console.log(err);
     })
 }
-export { AddTransportationService, getAllTransportationServices, UpdateTransportationService, deleteTransportationService, viewTransportationService, addVehical , deleteVehicalImage , editVehical , deleteVehical,AddBooking};
+
+
+
+export async function completeGuidBooking(req, res) {
+
+    console.log("innnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+
+
+
+
+
+
+
+
+
+
+    const bookingId = req.query.id;
+
+    // console.log(bookingId);
+
+
+
+
+    try {
+
+        const booking = await GuidBooking.findById(bookingId);
+        const bookingData = booking.toJSON();
+
+        // console.log(bookingData);
+
+
+        await GuidBooking.findByIdAndUpdate(
+            bookingId,
+            {
+                $set: {
+                    status: "Completed"
+                }
+            },
+            { new: true }
+        );
+
+
+
+
+
+        await GuideModel.findOneAndUpdate(
+            { _id: bookingData.guide._id }, // Use _id for MongoDB documents
+            {
+                $pull: {
+                    bookings: {
+                        id: new mongoose.Types.ObjectId(bookingId) // Ensure ObjectId conversion
+                    }
+                }
+            },
+            { new: true }
+        );
+
+
+
+
+
+
+        res.status(200).json({
+            success: true
+        });
+
+
+
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            success: false
+        });
+
+    }
+
+
+
+
+
+
+
+
+}
+
+
+
+export async function cancleVehicleBooking(req, res) {
+
+
+
+
+
+
+
+
+
+
+
+    const booking = req.body.bookingData;
+
+    console.log(booking);
+
+   
+
+
+
+
+    try {
+
+
+
+
+
+
+        await VehicalBookings.findByIdAndUpdate(
+            booking.bookingId,
+            {
+                $set: {
+                    status: "Cancelled"
+                }
+            },
+            { new: true }
+        );
+
+
+
+
+
+        await TransportationServiceModel.findOneAndUpdate(
+            { id: booking.tid },
+            {
+                $pull: {
+                    [`availableVehicles.${booking.vid}.bookings`]: {
+                        id: booking.bookingId
+                    }
+                }
+            },
+            { new: true }
+        );
+
+
+
+
+
+
+        res.status(200).json({
+            success: true
+        });
+
+
+
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            success: false
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+}
+export { AddTransportationService, getAllTransportationServices, UpdateTransportationService, deleteTransportationService, viewTransportationService, addVehical, deleteVehicalImage, editVehical, deleteVehical, AddBooking };

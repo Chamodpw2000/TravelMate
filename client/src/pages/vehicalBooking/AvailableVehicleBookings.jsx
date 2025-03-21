@@ -75,6 +75,64 @@ const AvailableVehicleBookings = () => {
         }
     }, [refreshBookings]);
 
+
+    const handleCancelClick = async (booking) => {
+        const result = await Swal.fire({
+            title: 'Confirm Cancle',
+            text: 'Are you sure you want to cancle this booking ?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Cancle'
+        });
+
+        if (result.isConfirmed) {
+
+            console.log("Booking",booking);
+            console.log("booking v",booking.vehical);
+            
+
+            
+
+
+            const bookingData ={
+
+                bookingId: booking._id,
+                tid : booking.vehical.tid,
+                vid:booking.vehical.id
+
+            }
+            try {
+                const response = await axios.put("http://localhost:3000/transportation/canclebooking", {
+                    bookingData
+                })
+
+
+
+
+                if (response.data.success) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Booking Cancled',
+                        icon: 'success',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+
+                    setRefreshBookings(!refreshBookings);
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Failed to mark booking as completed',
+                    icon: 'error'
+                });
+                console.log(error);
+            }
+        }
+    };
+
     return (
         <div className="container">
             {loading ? (
@@ -86,7 +144,7 @@ const AvailableVehicleBookings = () => {
             ) : bookings.length > 0 ? (
                 <div>
                     {bookings.map((booking) => (
-                       <VehicleBookingCard booking={booking} />
+                       <VehicleBookingCard booking={booking} handleCancelClick={handleCancelClick} />
                     ))}
                 </div>
             ) : (
