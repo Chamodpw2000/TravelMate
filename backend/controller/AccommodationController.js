@@ -104,7 +104,7 @@ const GetCity = async (req, res) => {
 
     try {
         const city = await CityModel.findOne({ _id: id });
-        console.log(city);
+        // console.log(city);
 
         return res.status(200).json({ success: true, city });
     } catch (err) {
@@ -199,7 +199,7 @@ const addHotelReview = async (req, res) =>{
 const getAllHotelReviews = async (req, res) => {
     try{
         let allHotelReviews = await HotelReviewModel.find({});
-        console.log("All Hotel Reviews Fetched");
+        // console.log("All Hotel Reviews Fetched");
         // console.log(allHotelReviews);
         res.send(allHotelReviews);
 
@@ -211,14 +211,7 @@ const getAllHotelReviews = async (req, res) => {
 
 
 const addRoom  = async(req,res)=>{
-
-
-   
-
-
-   
-
-console.log(req.body);
+// console.log(req.body);
 
     
     try{
@@ -227,7 +220,7 @@ console.log(req.body);
 
         let hotell = await AccommodationModel.findOne({id: data.hid});
         let rooms = hotell.rooms;
-        console.log(rooms);
+        // console.log(rooms);
 
 
         
@@ -261,10 +254,10 @@ console.log(req.body);
 const deleteRoomImage = async(req,res) => {
     try {
         const { images } = req.body;
-        console.log("Received data:", req.body);
-        console.log("Hotel ID:", images.hotel);
-        console.log("Room ID:", images.room);
-        console.log("Images to remove:", images.imagesToRemove);
+        // console.log("Received data:", req.body);
+        // console.log("Hotel ID:", images.hotel);
+        // console.log("Room ID:", images.room);
+        // console.log("Images to remove:", images.imagesToRemove);
         
         const updated = await AccommodationModel.findOneAndUpdate(
             {
@@ -281,7 +274,7 @@ const deleteRoomImage = async(req,res) => {
             {new: true}
         );
 
-        console.log("Updated document:", updated);
+        // console.log("Updated document:", updated);
         
         if (!updated) {
             console.log("No document found or no update made");
@@ -304,7 +297,7 @@ const editRoom = async(req,res) => {
     try {
 
 
-        console.log(req.body);
+        // console.log(req.body);
         const  data  = req.body;
         
 

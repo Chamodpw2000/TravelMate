@@ -141,7 +141,7 @@ function ViewTransportationService() {
                           name="availableVehicles"
                           options={availableVehicleOptions}
                           value={availableVehicleOptions.filter((option) =>
-                            transportationServiceDetails.availableVehicles.includes(
+                            transportationServiceDetails.availableVehicles?.includes(
                               option.value
                             )
                           )}
@@ -248,6 +248,10 @@ function ViewTransportationService() {
 
                   <Button variant="primary" onClick={handleSubmit}>
                     Update Transportation Service
+                  </Button>
+                  <Button className="mx-3" variant="primary" onClick={()=>navigate("/manage-vehicals/"+id)}>
+
+                    Manage Vehicals
                   </Button>
                 </Form>
               </Container>

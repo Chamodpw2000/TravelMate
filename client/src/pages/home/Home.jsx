@@ -11,6 +11,7 @@ import RestaurantsInLandingPage from "../../components/RestaurantInLandingPage/R
 import RestaurantCategoriesCards from "../../components/RestaurantCategoriesCards/RestaurantCategoriesCards";
 import PrePlannedTripsInLandingPage from "../../components/prePlannedTripsInLandingPage/PrePlannedTripsInLandingPage";
 import DestinationsInHomePage from "../../components/destinationsInHomePage/DestinationsInHomePage";
+import TransportServisersInLandingPage from "../../components/transportServicersInLandingPage/TransportServisersInLandingPage";
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
       <AiTripPlanning />
       <HotelsInLandingPage />
       <RestaurantsInLandingPage />
+      <TransportServisersInLandingPage />
       <GuideList />
       <Activities />
       <FeedbackSection />

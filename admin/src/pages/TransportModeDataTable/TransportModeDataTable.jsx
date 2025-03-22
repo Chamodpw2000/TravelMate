@@ -15,10 +15,7 @@ const TransportModeDataTable = () => {
       name: 'Description',
       selector: row => row.description,
     },
-    {
-      name: 'Vehicle Types',
-      selector: row => row.availableVehicles.join(', '),
-    },
+    
     {
       name: 'Price per Hour(LKR)',
       selector: row => row.pricePerHour,

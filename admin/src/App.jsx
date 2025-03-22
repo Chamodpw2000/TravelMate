@@ -29,6 +29,9 @@ import AddRoom from './components/ViewHotel/AddNewRoom';
 import HotelBookings from './pages/HotelBookings/HotelBookings';
 import GuidBooking from '../../backend/models/GuidBookings';
 import GuideBookingsAdmin from './pages/GuideBooking/GuideBookingsAdmin';
+import ManageVehicals from './components/ViewTransportationServices/ManageVehicals';
+import AddVehicle from './components/ViewTransportationServices/AddVehical';
+import TransportBookingsAdmin from './pages/TransportBooking/TransportBookingAdmin';
 
 
 const App = () => {
@@ -66,7 +69,15 @@ const App = () => {
             <Route path="/add-room" element={<AddRoom/>} />
             <Route path="/manage-hotel-bookings" element={<HotelBookings/>} />
 
+
+
             <Route path="/manage-guide-bookings" element={<GuideBookingsAdmin/>} />
+            <Route path="/manage-vehicals/:id" element={<ManageVehicals/>} />
+            <Route path="/add-vehical" element={<AddVehicle/>} />
+
+
+
+            <Route path="/manage-transport-bookings" element={<TransportBookingsAdmin/>} />
 
 
 

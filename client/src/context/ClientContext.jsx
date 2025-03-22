@@ -15,6 +15,7 @@ const ClientContextProvider = (props) => {
     const [allCities, setAllCities] = useState([]);
     const [allRestaurantReviews, setAllRestaurantReviews] = useState([]);
     const [allDestinations, setAllDestinations] = useState([]);
+    const [allTransportServices, setAllTransportServices] = useState([]);
 
     useEffect(() => {
         axios
@@ -36,6 +37,15 @@ const ClientContextProvider = (props) => {
                 console.log("All Details fetch error:", error);
             });
 
+            axios.get("http://localhost:3000/transportation/getAllTransportServices")
+            .then((response) => {
+                console.log("All Transport Services:", response.data);
+                setAllTransportServices(response.data);
+            })
+            .catch((error) => {
+                console.log("All Transport Services fetch error:", error);
+            });
+
         axios
             .get("http://localhost:3000/travelmate/allAccomodations")
             .then((response) => {
@@ -45,6 +55,8 @@ const ClientContextProvider = (props) => {
             .catch((error) => {
                 console.log("Accommodations fetch error:", error);
             });
+
+
 
         axios
             .get("http://localhost:3000/travelmate/gettravelmatefeedback")
@@ -148,7 +160,8 @@ const ClientContextProvider = (props) => {
         allRestaurantReviews,
         allHotelReviews,
         allGuideReviews,
-        allDestinations
+        allDestinations,
+        allTransportServices,
     };
 
     return (

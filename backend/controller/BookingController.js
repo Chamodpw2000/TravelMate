@@ -272,7 +272,7 @@ export async function deleteBooking(req, res) {
             { new: true }
         )
 
-        console.log(`rooms.${bookingData.room.id}.bookings`);
+        // console.log(`rooms.${bookingData.room.id}.bookings`);
 
 
         await AccommodationModel.findOneAndUpdate(

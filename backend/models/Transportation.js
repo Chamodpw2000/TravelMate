@@ -11,7 +11,7 @@ const TransportationServiceModel = model("TransportationServices", {
     required: true,
   },
   availableVehicles: {
-    type: [String],
+    type: [Object],
     required: true,
   },
   pricePerHour: {

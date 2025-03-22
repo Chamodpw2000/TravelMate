@@ -45,7 +45,7 @@ const BookingsModal = () => {
             <Button 
               variant="primary" 
               className="booking-btn"
-              onClick={() => handleNavigation('/transport-bookings')}
+              onClick={() => handleNavigation('/myVehicleBooking/available')}
             >
               Transportation Bookings
             </Button>
