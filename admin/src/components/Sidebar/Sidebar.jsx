@@ -63,6 +63,11 @@ const Sidebar = () => {
               <p>Manage Guid Bookings</p>
             </div>
           </Link>
+          <Link to="/manage-transport-bookings" style={{ textDecoration: 'none' }}>
+            <div className="sidebar-item">
+              <p>Manage Transport Bookings</p>
+            </div>
+          </Link>
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>
@@ -108,6 +113,11 @@ const Sidebar = () => {
           <Link to="/manage-guide-bookings" style={{ textDecoration: 'none' }}>
             <div className="sidebar-item">
               <p>Manage Guid Bookings</p>
+            </div>
+          </Link>
+          <Link to="/manage-transport-bookings" style={{ textDecoration: 'none' }}>
+            <div className="sidebar-item">
+              <p>Manage Transport Bookings</p>
             </div>
           </Link>
         </Nav>

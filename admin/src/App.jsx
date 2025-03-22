@@ -31,6 +31,7 @@ import GuidBooking from '../../backend/models/GuidBookings';
 import GuideBookingsAdmin from './pages/GuideBooking/GuideBookingsAdmin';
 import ManageVehicals from './components/ViewTransportationServices/ManageVehicals';
 import AddVehicle from './components/ViewTransportationServices/AddVehical';
+import TransportBookingsAdmin from './pages/TransportBooking/TransportBookingAdmin';
 
 
 const App = () => {
@@ -76,6 +77,7 @@ const App = () => {
 
 
 
+            <Route path="/manage-transport-bookings" element={<TransportBookingsAdmin/>} />
 
 
 

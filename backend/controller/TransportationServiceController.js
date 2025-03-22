@@ -685,4 +685,129 @@ export async function cancleVehicleBooking(req, res) {
 
 
 }
+
+
+
+export function getAllBookings(req, res) {
+
+
+
+
+
+
+
+
+
+
+
+    VehicalBookings.find().then((data) => {
+       
+
+        res.status(200).json(data)
+
+
+
+
+
+    }).catch((err) => {
+
+
+
+        console.log(err);
+    })
+}
+
+export async function completeVehicleBooking(req, res) {
+
+    console.log("innnnnnnnnnnnnnnnn bbbbbbbbbbbbbbbbbbbbb");
+    
+
+
+
+
+
+
+
+
+
+
+
+    const booking = req.body.bookingData;
+
+    console.log(booking);
+
+   
+
+
+
+
+    try {
+
+
+
+
+
+
+        await VehicalBookings.findByIdAndUpdate(
+            booking.bookingId,
+            {
+                $set: {
+                    status: "Completed"
+                }
+            },
+            { new: true }
+        );
+
+
+
+
+
+        await TransportationServiceModel.findOneAndUpdate(
+            { id: booking.tid },
+            {
+                $pull: {
+                    [`availableVehicles.${booking.vid}.bookings`]: {
+                        id: booking.bookingId
+                    }
+                }
+            },
+            { new: true }
+        );
+
+
+
+
+
+
+        res.status(200).json({
+            success: true
+        });
+
+
+
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            success: false
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
 export { AddTransportationService, getAllTransportationServices, UpdateTransportationService, deleteTransportationService, viewTransportationService, addVehical, deleteVehicalImage, editVehical, deleteVehical, AddBooking };
